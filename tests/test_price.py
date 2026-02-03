@@ -6,7 +6,7 @@ def test_price_valid():
     """Valid price data should create a Price object."""
     price = Price(
         metal="gold",
-        date=date.today(),
+        timestamp=date.today(),
         price=1000.0,
         currency="SEK"
     )
@@ -17,7 +17,7 @@ def test_price_invalid_negative_price():
     with pytest.raises(ValueError):
         Price(
             metal="gold",
-            date=date.today(),
+            timestamp=date.today(),
             price=-10.0,
             currency="SEK"
         )
@@ -27,7 +27,7 @@ def test_price_invalid_currency():
     with pytest.raises(ValueError):
         Price(
             metal="gold",
-            date=date.today(),
+            timestamp=date.today(),
             price=1000.0,
             currency="BTC"
         )
