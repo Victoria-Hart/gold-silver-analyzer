@@ -4,7 +4,7 @@ from .cache_manager import CacheManager
 
 
 class MetalsClient:
-    BASE_URL = "https://metals-api.com/api/latest"  # Exempel-API, byt om ni har riktig
+    BASE_URL = "https://metals-api.com/api/latest"  
 
     def __init__(self, api_key: str, cache: Optional[CacheManager] = None):
         self.api_key = api_key
@@ -17,11 +17,11 @@ class MetalsClient:
         """
         key = f"price_{symbol}"
 
-        # Kolla cache först
+        
         if self.cache.is_cache_valid(key):
             return self.cache.load(key)
 
-        # Annars, hämta från API
+       
         params = {
             "access_key": self.api_key,
             "base": "USD",
