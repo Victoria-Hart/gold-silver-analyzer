@@ -44,15 +44,20 @@ Projektet saknar i nuläget en gemensam startpunkt (main.py) för att köra hela
 ## Projektstruktur
 ```text
 gold-silver-analyzer/
+├── .github/workflows/
 ├── src/
-│   ├── models/
+│   ├── analysis/
 │   ├── api/
 │   ├── cli/
+│   ├── models/
+│   ├── visualization/
 │   └── analysis/
 ├── tests/
-├── .github/workflows/
-├── requirements.txt
-└── README.md
+├── .gitignore
+├── README.md
+├── main.py
+├── pytest.ini
+└── requirements.txt
 ```
 - **Python-moduler** (9+): cache_manager.py, metals_client.py, price_analyzer.py, portfolio_calculator.py, commands.py, output_formatter.py, ...
 - **Klasser** (3+): Metal (models/metal.py), Price (models/price.py), Transaction (models/transaction.py), ...
