@@ -11,13 +11,28 @@ def handle_command(client):
 
     parser.add_argument(
         "metal",
-        choices=["gold", "silver", "compare"],
+        choices=["gold", "silver", "compare", "all"],
         help="Metal to analyze"
     )
 
     args = parser.parse_args()
 
-    if args.metal == "gold":
+    # LOOP 
+    if args.metal == "all":
+        metals = {
+            "Gold": "XAU",
+            "Silver": "XAG"
+        }
+        
+        # ÄLSKAR LOOPS
+        for metal_name, metal_code in metals.items():
+            price = client.get_price(metal_code)
+            prices = [price] if price is not None else []
+            print_price_data(metal_name, prices)
+            print_trend_analysis(prices)
+            print("-" * 40)  # 
+    
+    elif args.metal == "gold":
         price = client.get_price("XAU")
         prices = [price] if price is not None else []
         print_price_data("Gold", prices)
@@ -30,10 +45,13 @@ def handle_command(client):
         print_trend_analysis(prices)
 
     elif args.metal == "compare":
-        gold_price = client.get_price("XAU")
-        silver_price = client.get_price("XAG")
-
-        if gold_price is not None:
-            print_price_data("Gold", [gold_price])
-        if silver_price is not None:
-            print_price_data("Silver", [silver_price])
+        # ANOTHER LOOP
+        metals_to_compare = [
+            ("Gold", "XAU"),
+            ("Silver", "XAG")
+        ]
+        
+        for metal_name, metal_code in metals_to_compare:
+            price = client.get_price(metal_code)
+            if price is not None:
+                print_price_data(metal_name, [price])
